@@ -1,13 +1,15 @@
 "use strict";
-window.Resource = (function(){
+window.Resource = (function() {
 	function Resource(name, initQuantity, amountLostPerTurn, imagePath){
 		this.name = name;
 		this.initQuantity = initQuantity;
-		this.quantity = quantity;
+		this.quantity = initQuantity;
 		this.amountLostPerTurn = amountLostPerTurn;
 		this.imagePath = imagePath;
 		this.x;
 		this.y;
+		this.width = 25;
+		this.height = 25;
 		this.onMap = false;
 		this.imageObj = new Image();
 		this.imageObj.src = imagePath;
@@ -22,12 +24,15 @@ window.Resource = (function(){
 	Resource.prototype.getX = function(){ return this.x; }
 	Resource.prototype.getY = function(){ return this.y; }
 	Resource.prototype.getOnMap = function(){ return this.onMap; }
+	Resource.prototype.getWidth = function(){ return this.width; }
+	Resource.prototype.getHeight = function(){ return this.height; }
 
 	//Mutators
 	Resource.prototype.setName = function(name){ this.name = name; }	
 	Resource.prototype.setImagePath = function(newPath){ this.imagePath = newPath; }
 	Resource.prototype.setX = function(newX){ this.x = newX; }
 	Resource.prototype.setY = function(newY){ this.y = newY; }
+	Resource.prototype.setPos = function(newX, newY){ this.x = newX; this.y = newY; }
 	Resource.prototype.setOnMap = function(status){ this.onMap = status; }
 
 	//Decrease the quantity of the resource by "amount"
@@ -51,6 +56,11 @@ window.Resource = (function(){
 
 	//Draw the resource
 	Resource.prototype.display = function(ctx){
-        ctx.drawImage(this.imageObj.src, this.x, this.y);   	    
+		if(this.onMap == true){			
+			ctx.drawImage(this.imageObj, this.x, this.y);   	    
+        }
 	}
-});
+
+	//Return object
+	return Resource;
+}());

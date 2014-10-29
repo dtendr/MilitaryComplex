@@ -14,6 +14,7 @@ var canvasElement;
 var ctx;
 
 var startButton;
+//var testResource;
 
 //Init function
 function init(){
@@ -26,6 +27,8 @@ function init(){
 	//Setup all the buttons
 	//myButton = new Button(x, y, "Text inside button");	
 	startButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 100, "Start");
+
+
 }
 
 //Check for click
@@ -52,7 +55,13 @@ function draw(){
 		
 		//drawText(text, x, y, colorHex, fontSizePx);
 		drawText("Welcome to Military Complex", SCREEN_WIDTH/2 - 200, 150, "#FFFFFF", "30px");
+	}
 
+	//Main Screen
+	if(currentScreen == CurrentScreen.MAIN){
+
+		//Draw test resource
+		testResource.display(ctx);
 	}
 }
 
