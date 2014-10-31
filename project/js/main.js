@@ -13,8 +13,12 @@ var canvasElement;
 //Global variables
 var ctx;
 
+//Resource loader and resource variable declaration
+var RESOURCE_LOADER;
+
 var startButton;
-//var testResource;
+var testResource;
+var testIcon;
 
 //Init function
 function init(){
@@ -24,11 +28,12 @@ function init(){
 	//Add an event listener for button clicks
 	canvasElement.addEventListener("click", onCanvasClick);
 	
-	//Setup all the buttons
-	//myButton = new Button(x, y, "Text inside button");	
-	startButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 100, "Start");
-
-
+	//Load resources
+	RESOURCE_LOADER = new Loader(SCREEN_WIDTH, SCREEN_HEIGHT);
+	
+	console.log("Resources: ", RESOURCE_LOADER.getAllResources());
+	console.log("Buttons: ", RESOURCE_LOADER.getAllButtons());
+	console.log("Icons: ", RESOURCE_LOADER.getAllIcons());
 }
 
 //Check for click
@@ -62,6 +67,9 @@ function draw(){
 
 		//Draw test resource
 		testResource.display(ctx);
+		
+		//Draw test icon
+		testIcon.display(ctx);
 	}
 }
 
@@ -80,12 +88,23 @@ function onCanvasClick(e){
 	//Get the position of click, [0] = x, [1] = y
 	var clickPos = getPosition(e, canvasElement);
 
+	//Get click events for the title screen
 	if(currentScreen === CurrentScreen.TITLE){
+	
+		//Start button
 		if(startButton.isClicked(clickPos[0], clickPos[1])){
 			console.log("Start Button clicked");
 			currentScreen = CurrentScreen.MAIN;
-		}
+		}	
+	}
 	
+	//Get click events for the game screen
+	if(currentScreen === CurrentScreen.MAIN){
+		//Test icon
+		if(testIcon.isClicked(clickPos[0], clickPos[1])){
+			console.log("Icon clicked");
+			currentScreen = CurrentScreen.TITLE;
+		}
 	}
 }
 
@@ -109,8 +128,6 @@ function runGameLoop(){
 }
 
 $(document).ready(function(){
-	console.log("Ready");
-	
 	//Setup function
 	init();
 	
