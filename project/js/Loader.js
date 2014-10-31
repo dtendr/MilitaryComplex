@@ -8,25 +8,26 @@ window.Loader = (function() {
 		this.icons = [];
 		
 		//Load Resource objects
+		//myResource = new Resource("name", initQuantity, amountLostPerTurn, imagePath);
 		testResource = new Resource("Food", 100, 5, "media/test1.png");
 		testResource.setPos(50, 50);
 		testResource.setOnMap(true);		
 			
-		//Setup all the buttons
+		//Load Button objects
 		//myButton = new Button(x, y, "Text inside button");	
 		startButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 100, "Start");
 		
-		//Init icons
+		//Load Icon objects
 		//myIcon = new Icon(x, y, "imagePath");
 		testIcon = new Icon(SCREEN_WIDTH/2 - 50, SCREEN_HEIGHT/2 - 200, "media/test2.png");
 		
-		//Array of all resources
+		//Add resources to array
 		this.addResource(testResource);
 		
-		//Array of all buttons
+		//Add buttons to array
 		this.addButton(startButton);
 		
-		//Array of all icons
+		//Add icons to array
 		this.addIcon(testIcon);
 	}
 	
