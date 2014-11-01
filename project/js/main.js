@@ -19,6 +19,7 @@ var RESOURCE_LOADER;
 var startButton;
 var testResource;
 var testIcon;
+var testEntity;
 
 //Init function
 function init(){
@@ -34,6 +35,8 @@ function init(){
 	console.log("Resources: ", RESOURCE_LOADER.getAllResources());
 	console.log("Buttons: ", RESOURCE_LOADER.getAllButtons());
 	console.log("Icons: ", RESOURCE_LOADER.getAllIcons());
+
+	testEntity = new Entity(playerData);
 }
 
 //Check for click
@@ -66,10 +69,13 @@ function draw(){
 	if(currentScreen == CurrentScreen.MAIN){
 
 		//Draw test resource
-		testResource.display(ctx);
+		//testResource.display(ctx);
 		
 		//Draw test icon
 		testIcon.display(ctx);
+
+		//Draw testEntity's resources
+		testEntity.drawResources(ctx);
 	}
 }
 
@@ -79,6 +85,11 @@ function update(){
 	//Title screen updates
 	if(currentScreen == CurrentScreen.TITLE){
 			
+	}
+
+	//Main screen updates
+	if(currentScreen == CurrentScreen.MAIN){
+		testEntity.updateResourceQuantities();
 	}
 }
 

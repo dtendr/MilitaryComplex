@@ -32,7 +32,7 @@ window.Resource = (function() {
 	Resource.prototype.setImagePath = function(newPath){ this.imagePath = newPath; }
 	Resource.prototype.setX = function(newX){ this.x = newX; }
 	Resource.prototype.setY = function(newY){ this.y = newY; }
-	Resource.prototype.setPos = function(newX, newY){ this.x = newX; this.y = newY; }
+	Resource.prototype.setPos = function(newX, newY){ this.x = newX; this.y = newY; this.onMap = true; }
 	Resource.prototype.setOnMap = function(status){ this.onMap = status; }
 
 	//Decrease the quantity of the resource by "amount"
@@ -44,7 +44,7 @@ window.Resource = (function() {
 
 	//Decrease the quantity of the resource by its amount to lose per turn
 	Resource.prototype.autoDecreaseQuantity = function(){
-		this.quantity -= amountLostPerTurn;
+		this.quantity -= this.amountLostPerTurn;
 		if(this.quantity <= 0)
 			this.quantity = 0;	
 	}
