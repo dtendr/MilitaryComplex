@@ -4,11 +4,11 @@
 "use strict";
 window.Entity = (function() {
 
-	function Entity(dataObject){
-		this.troops = new Resource("Troops", dataObject.troops.initQuantity, dataObject.troops.amountLostPerTurn, "media/test1.png");
-		this.medicine = new Resource("Medicine", dataObject.medicine.initQuantity, dataObject.medicine.amountLostPerTurn, "media/test1.png");
-		this.money = new Resource("Money", dataObject.money.initQuantity, dataObject.money.amountLostPerTurn, "media/test1.png");
-		this.food = new Resource("Food", dataObject.food.initQuantity, dataObject.food.amountLostPerTurn, "media/test1.png");
+	function Entity(dataObject, imagePathArray){
+		this.troops = new Resource("Troops", dataObject.troops.initQuantity, dataObject.troops.amountLostPerTurn, imagePathArray[0]);
+		this.medicine = new Resource("Medicine", dataObject.medicine.initQuantity, dataObject.medicine.amountLostPerTurn, imagePathArray[1]);
+		this.money = new Resource("Money", dataObject.money.initQuantity, dataObject.money.amountLostPerTurn, imagePathArray[2]);
+		this.food = new Resource("Food", dataObject.food.initQuantity, dataObject.food.amountLostPerTurn, imagePathArray[3]);
 		this.troops.setPos(50, 50);
 		this.medicine.setPos(60, 60);
 		this.money.setPos(70, 70);
@@ -28,6 +28,12 @@ window.Entity = (function() {
 		this.money.autoDecreaseQuantity();
 		this.food.autoDecreaseQuantity();
 	}
-	
+
+	//Functions to move the resources
+	Entity.prototype.moveTroopsTo = function(x, y){ this.troops.setPos(x, y); }
+	Entity.prototype.moveMedicineTo = function(x, y){ this.medicine.setPos(x, y); }
+	Entity.prototype.moveMoneyTo = function(x, y){ this.money.setPos(x, y); }
+	Entity.prototype.moveFoodTo = function(x, y){ this.food.setPos(x, y); }
+
 	return Entity;
 }());

@@ -19,6 +19,7 @@ var RESOURCE_LOADER;
 var startButton;
 var testResource;
 var testIcon;
+var testEntityImages;
 var testEntity;
 
 //Init function
@@ -36,7 +37,7 @@ function init(){
 	console.log("Buttons: ", RESOURCE_LOADER.getAllButtons());
 	console.log("Icons: ", RESOURCE_LOADER.getAllIcons());
 
-	testEntity = new Entity(playerData);
+	testEntity = new Entity(playerData, testEntityImages);
 }
 
 //Check for click
