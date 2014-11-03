@@ -2,8 +2,8 @@
 //Author: Josh Davis
 
 "use strict";
-window.Enemy = (function() {
 
+window.Enemy = (function() {
 	function Enemy(){
 		
 	}

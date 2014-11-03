@@ -20,7 +20,10 @@ var startButton;
 var testResource;
 var testIcon;
 var testEntityImages;
-var testEntity;
+//var testEntity;
+
+var testPlayer;
+var testEnemy;
 
 //Init function
 function init(){
@@ -37,7 +40,15 @@ function init(){
 	console.log("Buttons: ", RESOURCE_LOADER.getAllButtons());
 	console.log("Icons: ", RESOURCE_LOADER.getAllIcons());
 
-	testEntity = new Entity(playerData, testEntityImages);
+	//testEntity = new Entity(playerData, testEntityImages);
+	
+	//Prototype inheritance for enemy
+	Player.prototype = new Entity(playerData, testEntityImages);
+	testPlayer = new Player();
+	
+	//Prototype inheritance for enemy
+	Enemy.prototype = new Entity(playerData, testEntityImages);
+	testEnemy = new Enemy();
 }
 
 //Check for click
@@ -76,7 +87,13 @@ function draw(){
 		testIcon.display(ctx);
 
 		//Draw testEntity's resources
-		testEntity.drawResources(ctx);
+		//testEntity.drawResources(ctx);
+		
+		//Draw testPlayer's resources
+		testPlayer.drawResources(ctx);
+		
+		//Draw testEnemy's resources
+		testEnemy.drawResources(ctx);
 	}
 }
 
@@ -90,7 +107,9 @@ function update(){
 
 	//Main screen updates
 	if(currentScreen == CurrentScreen.MAIN){
-		testEntity.updateResourceQuantities();
+		//testEntity.updateResourceQuantities();
+		testPlayer.updateResourceQuantities();
+		testEnemy.updateResourceQuantities();
 	}
 }
 
