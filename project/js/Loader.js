@@ -7,13 +7,14 @@ window.Loader = (function() {
 		this.buttons = [];
 		this.icons = [];
 		
-		//Set up enemy image paths
+		//Set up resource image paths
 		//					    Troops             Medicine             Money              Food
 		testEntityImages = ["media/test1.png", "media/test1.png", "media/test1.png", "media/test1.png"];
+		testEntityImages2 = ["media/test2.png", "media/test2.png", "media/test2.png", "media/test2.png"];
 
 		//Load Resource objects
 		//myResource = new Resource("name", initQuantity, amountLostPerTurn, imagePath);
-		testResource = new Resource("Food", 100, 5, "media/test1.png");
+		testResource = new Resource("Food", 100, 5, "media/test2.png");
 		testResource.setPos(50, 50);
 		testResource.setOnMap(true);		
 			

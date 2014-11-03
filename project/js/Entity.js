@@ -9,10 +9,10 @@ window.Entity = (function() {
 		this.medicine = new Resource("Medicine", dataObject.medicine.initQuantity, dataObject.medicine.amountLostPerTurn, imagePathArray[1]);
 		this.money = new Resource("Money", dataObject.money.initQuantity, dataObject.money.amountLostPerTurn, imagePathArray[2]);
 		this.food = new Resource("Food", dataObject.food.initQuantity, dataObject.food.amountLostPerTurn, imagePathArray[3]);
-		this.troops.setPos(50, 50);
-		this.medicine.setPos(60, 60);
-		this.money.setPos(70, 70);
-		this.food.setPos(80, 80);
+		this.troops.setPos(dataObject.troops.x, dataObject.troops.y);
+		this.medicine.setPos(dataObject.medicine.x, dataObject.medicine.y);
+		this.money.setPos(dataObject.money.x, dataObject.money.y);
+		this.food.setPos(dataObject.food.x, dataObject.food.y);
 	}
 
 	Entity.prototype.drawResources = function(ctx){

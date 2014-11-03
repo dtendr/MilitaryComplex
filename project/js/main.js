@@ -20,10 +20,13 @@ var startButton;
 var testResource;
 var testIcon;
 var testEntityImages;
+var testEntityImages2;
 //var testEntity;
 
 var testPlayer;
 var testEnemy;
+
+var testLevel;
 
 //Init function
 function init(){
@@ -49,6 +52,10 @@ function init(){
 	//Prototype inheritance for enemy
 	Enemy.prototype = new Entity(playerData, testEntityImages);
 	testEnemy = new Enemy();
+
+	//myLevel = new Level(playerData, numEnemies, enemyObjectArray, mapObject);
+	testLevel = new Level(playerData, 2, enemyObjectsArray, {});
+	testLevel.addResource("Food", 2000, 25, "media/test2.png", 400, 400);
 }
 
 //Check for click
@@ -84,16 +91,17 @@ function draw(){
 		//testResource.display(ctx);
 		
 		//Draw test icon
-		testIcon.display(ctx);
+		//testIcon.display(ctx);
 
 		//Draw testEntity's resources
 		//testEntity.drawResources(ctx);
 		
 		//Draw testPlayer's resources
-		testPlayer.drawResources(ctx);
+		//testPlayer.drawResources(ctx);
 		
 		//Draw testEnemy's resources
-		testEnemy.drawResources(ctx);
+		//testEnemy.drawResources(ctx);
+		testLevel.drawAllResources(ctx);
 	}
 }
 
@@ -108,8 +116,9 @@ function update(){
 	//Main screen updates
 	if(currentScreen == CurrentScreen.MAIN){
 		//testEntity.updateResourceQuantities();
-		testPlayer.updateResourceQuantities();
-		testEnemy.updateResourceQuantities();
+		//testPlayer.updateResourceQuantities();
+		//testEnemy.updateResourceQuantities();
+		testLevel.updateAllResources();
 	}
 }
 
