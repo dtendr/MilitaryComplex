@@ -28,7 +28,13 @@ window.Entity = (function() {
 		this.money.autoDecreaseQuantity();
 		this.food.autoDecreaseQuantity();
 	}
-
+	
+	//Getters
+	Entity.prototype.getTroopsQuantity = function(){ return this.troops.quantity; };
+	Entity.prototype.getMedicineQuantity = function(){ return this.medicine.quantity; };
+	Entity.prototype.getMoneyQuantity = function(){ return this.money.quantity; };
+	Entity.prototype.getFoodQuantity = function(){ return this.food.quantity; };
+	
 	//Functions to move the resources
 	Entity.prototype.moveTroopsTo = function(x, y){ this.troops.setPos(x, y); }
 	Entity.prototype.moveMedicineTo = function(x, y){ this.medicine.setPos(x, y); }

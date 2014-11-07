@@ -102,6 +102,8 @@ function draw(){
 		//Draw testEnemy's resources
 		//testEnemy.drawResources(ctx);
 		testLevel.drawAllResources(ctx);
+		
+		testLevel.drawUI(ctx, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 }
 

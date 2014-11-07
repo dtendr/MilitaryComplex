@@ -1,7 +1,7 @@
 "use strict";
 window.Icon = (function() {
 
-	function Icon(x, y, imgPath){
+	function Icon(x, y, imgPath, screenWidth, screenHeight){
 		this.x = x;
 		this.y = y;
 		this.image = new Image();
@@ -10,6 +10,8 @@ window.Icon = (function() {
 		this.height = this.image.height;
 		this.halfW = this.width/2;
 		this.halfH = this.height/2;
+		this.screenWidth = screenWidth;
+		this.screenHeight = screenHeight;
 	}
 	
 	//Draw the Icon
