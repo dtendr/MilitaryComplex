@@ -33,8 +33,9 @@ function init(){
 	canvasElement = document.getElementById("main-canvas");
 	ctx = canvasElement.getContext("2d");
 	
-	//Add an event listener for button clicks
+	//Add event listeners for button clicks and key presses
 	canvasElement.addEventListener("click", onCanvasClick);
+	window.addEventListener("keypress", onKeyDown);
 	
 	//Load resources
 	RESOURCE_LOADER = new Loader(SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -146,6 +147,27 @@ function onCanvasClick(e){
 		if(testIcon.isClicked(clickPos[0], clickPos[1])){
 			console.log("Icon clicked");
 			currentScreen = CurrentScreen.TITLE;
+		}
+	}
+}
+
+//Handle canvas key pressed
+function onKeyDown(e){
+	
+	var keyCode = e.keyCode;
+
+	if(currentScreen === CurrentScreen.MAIN){
+		if(keyCode == 49){ //1
+			testLevel.toggleResourceWindow();
+		}
+		else if(keyCode == 50){ //2
+			testLevel.toggleResourceWindow();
+		}
+		else if(keyCode == 51){ //3
+			testLevel.toggleResourceWindow();
+		}
+		else if(keyCode == 52){ //4
+			testLevel.toggleResourceWindow();
 		}
 	}
 }

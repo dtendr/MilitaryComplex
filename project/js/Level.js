@@ -14,6 +14,7 @@ window.Level = (function() {
 
 		this.resources = [];
 		this.numResources = 0;
+		this.resourceWindowOpen = false;
 	}
 
 	//Add a resource to the level only
@@ -70,8 +71,26 @@ window.Level = (function() {
 			
 			startingRectY += 225;
 		}
-		
+
+		ctx.restore();
+
+		this.drawResourceWindow(ctx, screenWidth, screenHeight);		
 	};
+
+	//Draw menu to interact with and allocate resources
+	Level.prototype.drawResourceWindow = function(ctx, screenWidth, screenHeight){
+		if(this.resourceWindowOpen == true){
+			ctx.save();
+			ctx.fillStyle = "blue";
+			ctx.strokeStyle = "black";
+			ctx.fillRect((screenWidth - 400)/2, (screenHeight - 400)/2, 400, 400);
+			ctx.strokeRect((screenWidth - 400)/2, (screenHeight - 400)/2, 400, 400);
+			ctx.restore();
+		}
+	};
+
+	//Toggle resource window
+	Level.prototype.toggleResourceWindow = function(){ this.resourceWindowOpen = !this.resourceWindowOpen; };
 
 	//Draw the player's resources
 	Level.prototype.drawPlayerResources = function(ctx){
