@@ -19,4 +19,4 @@ var enemyData2 = {
 	food: { initQuantity: 2000, amountLostPerTurn: 5, x: 260, y: 260}
 };
 
-var enemyObjectsArray = [enemyData, enemyData2];
+var enemyObjectsArray = [enemyData];

@@ -40,16 +40,22 @@ window.Level = (function() {
 		ctx.strokeRect(0, screenHeight - 50, 300, 50);
 		
 		//Draw player icons		
-		new Icon(5, screenHeight - 40, "media/troopIcon.png").display(ctx);
-		new Icon(75, screenHeight - 40, "media/medicineIcon.png").display(ctx);
-		new Icon(145, screenHeight - 40, "media/moneyIcon.png").display(ctx);
-		new Icon(215, screenHeight - 40, "media/foodIcon.png").display(ctx);
+		new Icon(5, screenHeight - 45, "media/troopsIcon.png").display(ctx);
+		new Icon(75, screenHeight - 45, "media/medicineIcon.png").display(ctx);
+		new Icon(145, screenHeight - 45, "media/moneyIcon.png").display(ctx);
+		new Icon(215, screenHeight - 45, "media/foodIcon.png").display(ctx);
 		
 		//Draw player resource info
 		drawText(this.player.getTroopsQuantity(), 35, screenHeight - 20, "#FFFFFF", "16px");
 		drawText(this.player.getMedicineQuantity(), 105, screenHeight - 20, "#FFFFFF", "16px");
 		drawText(this.player.getMoneyQuantity(), 175, screenHeight - 20, "#FFFFFF", "16px");
 		drawText(this.player.getFoodQuantity(), 245, screenHeight - 20, "#FFFFFF", "16px");
+
+		//Draw button text
+		drawText("1", 12, screenHeight - 4, "#FFFFFF", "16px");
+		drawText("2", 82, screenHeight - 4, "#FFFFFF", "16px");
+		drawText("3", 152, screenHeight - 4, "#FFFFFF", "16px");
+		drawText("4", 222, screenHeight - 4, "#FFFFFF", "16px");
 		
 		//Draw enemies icons
 		var rectWidth = 100;
@@ -59,7 +65,7 @@ window.Level = (function() {
 			ctx.fillRect(startingRectX, startingRectY, rectWidth, 200);		
 			ctx.strokeRect(startingRectX,  startingRectY, rectWidth, 200);
 			
-			new Icon(startingRectX + 5, startingRectY + 10, "media/troopIcon.png").display(ctx);
+			new Icon(startingRectX + 5, startingRectY + 10, "media/troopsIcon.png").display(ctx);
 			new Icon(startingRectX + 5, startingRectY + 40, "media/medicineIcon.png").display(ctx);
 			new Icon(startingRectX + 5, startingRectY + 70, "media/moneyIcon.png").display(ctx);
 			new Icon(startingRectX + 5, startingRectY + 100, "media/foodIcon.png").display(ctx);

@@ -12,6 +12,8 @@ var canvasElement;
 
 //Global variables
 var ctx;
+var currentFrame = 0;
+var gamePaused = false;
 
 //Resource loader and resource variable declaration
 var RESOURCE_LOADER;
@@ -55,7 +57,7 @@ function init(){
 	testEnemy = new Enemy();
 
 	//myLevel = new Level(playerData, numEnemies, enemyObjectArray, mapObject);
-	testLevel = new Level(playerData, 2, enemyObjectsArray, {});
+	testLevel = new Level(playerData, 1, enemyObjectsArray, {});
 	testLevel.addResource("Food", 2000, 25, "media/test2.png", 400, 400);
 }
 
@@ -110,7 +112,8 @@ function draw(){
 
 //This function will update whatever variables we need based on which screen we are on
 function update(){
-	
+	currentFrame++;
+
 	//Title screen updates
 	if(currentScreen == CurrentScreen.TITLE){
 			
@@ -121,7 +124,10 @@ function update(){
 		//testEntity.updateResourceQuantities();
 		//testPlayer.updateResourceQuantities();
 		//testEnemy.updateResourceQuantities();
-		testLevel.updateAllResources();
+		if(gamePaused == false){
+			if(currentFrame%60 == 0)
+				testLevel.updateAllResources();
+		}
 	}
 }
 
@@ -159,18 +165,25 @@ function onKeyDown(e){
 	if(currentScreen === CurrentScreen.MAIN){
 		if(keyCode == 49){ //1
 			testLevel.toggleResourceWindow();
+			toggleGamePaused();
 		}
 		else if(keyCode == 50){ //2
 			testLevel.toggleResourceWindow();
+			toggleGamePaused();
 		}
 		else if(keyCode == 51){ //3
 			testLevel.toggleResourceWindow();
+			toggleGamePaused();
 		}
 		else if(keyCode == 52){ //4
 			testLevel.toggleResourceWindow();
+			toggleGamePaused();
 		}
 	}
 }
+
+//Toggle the gamePaused attribute
+function toggleGamePaused() { gamePaused = !gamePaused; }
 
 //This function will act as our main game loop
 function runGameLoop(){
