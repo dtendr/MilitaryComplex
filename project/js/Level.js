@@ -32,7 +32,40 @@ window.Level = (function() {
 	
 	//Draw the map
 	Level.prototype.drawMap = function(ctx){
-
+		// Tile
+		var tileSize = 20;
+		var tileX, tileY;
+		// Map object
+		var data = mapData.rows;
+		
+		for(var r = 0; r < data.length; r++){
+			for( var c = 0; c < data[r].col.length; c++){
+				var col = data[r].col[c];
+				// Position of the next tile
+				tileY = r * tileSize;
+				tileX = c * tileSize;
+				// New image for the terrains
+				var terrain = new Image();
+				
+				switch(col){
+					case 0: // grass
+						terrain.src = "media/terrain0.png";
+						break;
+					case 1: // road
+						terrain.src = "media/terrain1.png";
+						break;
+					case 2: // rocks
+						terrain.src = "media/terrain2.png";
+						break;
+					case 3: // dirt
+						terrain.src = "media/terrain3.png";
+						break;
+				}
+				ctx.drawImage(terrain, tileX, tileY, tileSize, tileSize);
+				//ctx.strokeStyle = "#B0B0B0";
+				//ctx.strokeRect(tileX, tileY, tileSize, tileSize);
+			}
+		}
 	};
 	
 	//Draw the ui
