@@ -163,20 +163,24 @@ function onKeyDown(e){
 	var keyCode = e.keyCode;
 
 	if(currentScreen === CurrentScreen.MAIN){
-		if(keyCode == 49){ //1
+		if(keyCode == 49){ //1 - troops
 			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(1, "troops", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();		
+		}
+		else if(keyCode == 50){ //2 - medicine
+			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(2, "medicine", SCREEN_WIDTH, SCREEN_HEIGHT);
 			toggleGamePaused();
 		}
-		else if(keyCode == 50){ //2
+		else if(keyCode == 51){ //3 - money
 			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(3, "money", SCREEN_WIDTH, SCREEN_HEIGHT);
 			toggleGamePaused();
 		}
-		else if(keyCode == 51){ //3
+		else if(keyCode == 52){ //4 - food
 			testLevel.toggleResourceWindow();
-			toggleGamePaused();
-		}
-		else if(keyCode == 52){ //4
-			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(4, "food", SCREEN_WIDTH, SCREEN_HEIGHT);
 			toggleGamePaused();
 		}
 	}

@@ -15,6 +15,12 @@ window.Level = (function() {
 		this.resources = [];
 		this.numResources = 0;
 		this.resourceWindowOpen = false;
+
+		//Resource distribution stuff		
+		this.selectedResource = "";
+		this.smallQuantityIcon = "null";
+		this.mediumQuantityIcon = "null";
+		this.largeQuantityIcon = "null";
 	}
 
 	//Add a resource to the level only
@@ -90,8 +96,34 @@ window.Level = (function() {
 			ctx.fillStyle = "blue";
 			ctx.strokeStyle = "black";
 			ctx.fillRect((screenWidth - 400)/2, (screenHeight - 400)/2, 400, 400);
-			ctx.strokeRect((screenWidth - 400)/2, (screenHeight - 400)/2, 400, 400);
+			ctx.strokeRect((screenWidth - 400)/2, (screenHeight - 400)/2, 400, 400);			
 			ctx.restore();
+			this.drawResourceQuantities(ctx, screenWidth, screenHeight);
+		}
+	};
+
+	//Load resource quantities to be drawn on the resource window
+	Level.prototype.loadResourceQuantities = function(numberPressed, resourceName, screenWidth, screenHeight){
+		var iconImagePath = "";
+
+		if(resourceName != ""){			
+			iconImagePath = "media/" + resourceName + "Icon.png";
+			this.smallQuantityIcon = new Icon((screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);		
+			this.mediumQuantityIcon = new Icon((screenWidth - 400)/2 + 187, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);	
+			this.largeQuantityIcon = new Icon((screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);	
+		}
+	};
+
+	//Draw resource quantities
+	Level.prototype.drawResourceQuantities = function(ctx, screenWidth, screenHeight){
+		if(this.smallQuantityIcon != "null"){
+			this.smallQuantityIcon.display(ctx);
+			this.mediumQuantityIcon.display(ctx);
+			this.largeQuantityIcon.display(ctx);
+			drawText("5", (screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("10", (screenWidth - 400)/2 + 187, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("25", (screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("Please select a quantity to place", (screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 150, "#FFFFFF", "20px");
 		}
 	};
 
