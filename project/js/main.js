@@ -30,39 +30,7 @@ var testEnemy;
 
 var testLevel;
 
-var mapData = {
-	"rows" : [
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		
-		{"col" : [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0] },
-		
-		{"col" : [0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1] },
-		
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1] },
-		{"col" : [0, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0] },
-		
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2] },
-		{"col" : [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] },
-		{"col" : [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] },
-		{"col" : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] },
-		{"col" : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] }
-	]
-};
+var mousePos;
 
 //Init function
 function init(){
@@ -72,7 +40,10 @@ function init(){
 	//Add event listeners for button clicks and key presses
 	canvasElement.addEventListener("click", onCanvasClick);
 	window.addEventListener("keypress", onKeyDown);
-	
+	canvasElement.addEventListener('mousemove', function(evt) {
+	    mousePos = getMousePos(canvasElement, evt);
+	});
+
 	//Load resources
 	RESOURCE_LOADER = new Loader(SCREEN_WIDTH, SCREEN_HEIGHT);
 	
@@ -92,7 +63,7 @@ function init(){
 
 	//myLevel = new Level(playerData, numEnemies, enemyObjectArray, mapObject);
 	testLevel = new Level(playerData, 1, enemyObjectsArray, {});
-	testLevel.addResource("Food", 2000, 25, "media/test2.png", 400, 400);
+	//testLevel.addResource("Food", 2000, 25, "media/test2.png", 400, 400);
 }
 
 //Check for click
@@ -140,9 +111,11 @@ function draw(){
 		
 		//Draw testEnemy's resources
 		//testEnemy.drawResources(ctx);
-		testLevel.drawAllResources(ctx);
+		testLevel.drawLevelResources(ctx);
 		
 		testLevel.drawUI(ctx, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		testLevel.drawResourcePlaceholder(ctx, mousePos);
 	}
 }
 
@@ -190,6 +163,12 @@ function onCanvasClick(e){
 			console.log("Icon clicked");
 			currentScreen = CurrentScreen.TITLE;
 		}
+
+		//Resource allocating
+		if(testLevel.getResourcePlaceHolderStatus() == false)		
+			testLevel.handleIconClicks(clickPos[0], clickPos[1]);
+		else
+			testLevel.handleResourcePlaceClick(mousePos);
 	}
 }
 
@@ -259,5 +238,13 @@ function drawText(text, x, y, color, font){
 	ctx.font= font + " Arial";
 	ctx.fillText(text, x, y);
 	ctx.restore();
+}
+
+function getMousePos(canvas, evt) {
+	var rect = canvas.getBoundingClientRect();
+	return {
+	  x: evt.clientX - rect.left,
+	  y: evt.clientY - rect.top
+	};
 }
 

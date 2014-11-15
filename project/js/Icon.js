@@ -37,6 +37,11 @@ window.Icon = (function() {
 			return false;
 		}
 	}
+
+	//Return image path
+	Icon.prototype.getImagePath = function(){ 
+		return this.image.src;
+	};
 	
 	return Icon;
 }());

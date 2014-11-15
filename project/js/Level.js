@@ -21,6 +21,16 @@ window.Level = (function() {
 		this.smallQuantityIcon = "null";
 		this.mediumQuantityIcon = "null";
 		this.largeQuantityIcon = "null";
+		this.clickedIcon = "null";
+		this.resourcePlaceHolderActive = false;
+		this.resourceToAdd = {
+			name: "",
+			initQuantity: "",
+			amountLostPerTurn: 5,
+			imagePath: "",
+			x: "",
+			y: ""
+		};
 	}
 
 	//Add a resource to the level only
@@ -143,7 +153,10 @@ window.Level = (function() {
 			iconImagePath = "media/" + resourceName + "Icon.png";
 			this.smallQuantityIcon = new Icon((screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);		
 			this.mediumQuantityIcon = new Icon((screenWidth - 400)/2 + 187, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);	
-			this.largeQuantityIcon = new Icon((screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);	
+			this.largeQuantityIcon = new Icon((screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 50, iconImagePath, screenWidth, screenHeight);
+
+			this.resourceToAdd.name = resourceName;
+			this.resourceToAdd.imagePath = iconImagePath;	
 		}
 	};
 
@@ -153,9 +166,9 @@ window.Level = (function() {
 			this.smallQuantityIcon.display(ctx);
 			this.mediumQuantityIcon.display(ctx);
 			this.largeQuantityIcon.display(ctx);
-			drawText("5", (screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
-			drawText("10", (screenWidth - 400)/2 + 187, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
-			drawText("25", (screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("50", (screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("100", (screenWidth - 400)/2 + 187, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
+			drawText("250", (screenWidth - 400)/2 + 325, (screenHeight - 400)/2 + 100, "#FFFFFF", "20px");
 			drawText("Please select a quantity to place", (screenWidth - 400)/2 + 50, (screenHeight - 400)/2 + 150, "#FFFFFF", "20px");
 		}
 	};
@@ -215,6 +228,57 @@ window.Level = (function() {
 		this.updateEnemyResources();
 		this.updateLevelResources();
 	};
+
+	//Handle clicking on the resource window
+	Level.prototype.handleIconClicks = function(clickX, clickY){
+		if(this.resourceWindowOpen == true){
+			if(this.smallQuantityIcon.isClicked(clickX, clickY) == true){	
+				this.resourcePlaceHolderActive = true;
+				this.clickedIcon = this.smallQuantityIcon;
+				this.resourceWindowOpen = false;
+				this.resourceToAdd.initQuantity = 50;
+			}
+			else if(this.mediumQuantityIcon.isClicked(clickX, clickY) == true){	
+				this.resourcePlaceHolderActive = true;
+				this.clickedIcon = this.mediumQuantityIcon;
+				this.resourceWindowOpen = false;			
+				this.resourceToAdd.initQuantity = 100;	
+			}
+			else if(this.largeQuantityIcon.isClicked(clickX, clickY) == true){			
+				this.resourcePlaceHolderActive = true;
+				this.clickedIcon = this.largeQuantityIcon;
+				this.resourceWindowOpen = false;
+				this.resourceToAdd.initQuantity = 250;
+			}
+		}
+	};
+
+	//Draw resource placeholder
+	Level.prototype.drawResourcePlaceholder = function(ctx, mousePos){
+		if(this.resourcePlaceHolderActive == true){
+			var img = new Image();
+			img.src = this.clickedIcon.getImagePath();
+			ctx.drawImage(img, mousePos.x, mousePos.y);
+		}
+	}
+
+	//Handle resource being placed on map
+	Level.prototype.handleResourcePlaceClick = function(mousePos){
+		if(this.resourcePlaceHolderActive == true){
+			//name, initQuantity, amountLostPerTurn, imagePath, x, y
+			this.resourceToAdd.x = mousePos.x;
+			this.resourceToAdd.y = mousePos.y;
+
+			console.log(this.resourceToAdd);
+			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, this.resourceToAdd.amountLostPerTurn, 
+				this.resourceToAdd.imagePath, this.resourceToAdd.x, this.resourceToAdd.y);			
+
+			this.resourcePlaceHolderActive = false;
+		};
+	};
+
+	//Return resource placeholder
+	Level.prototype.getResourcePlaceHolderStatus = function(){ return this.resourcePlaceHolderActive; };
 
 	return Level;
 }());
