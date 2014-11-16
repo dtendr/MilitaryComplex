@@ -33,11 +33,34 @@ window.Level = (function() {
 		};
 	}
 
+	//Main update function
+	Level.prototype.update = function(){
+		this.removeEmptyResources();
+		this.updateAllResources();
+	};
+
+	//Main draw function 
+	Level.prototype.draw = function(ctx, screenWidth, screenHeight, mousePos){			
+		this.drawMap(ctx);
+		this.drawLevelResources(ctx);		
+		this.drawUI(ctx, screenWidth, screenHeight);
+		this.drawResourcePlaceholder(ctx, mousePos);
+	};
+
 	//Add a resource to the level only
 	Level.prototype.addResource = function(name, initQuantity, amountLostPerTurn, imagePath, x, y){
 		this.resources[this.numResources] = new Resource(name, initQuantity, amountLostPerTurn, imagePath);
 		this.resources[this.numResources].setPos(x, y);
 		this.numResources++;
+	};
+
+	//Remove all empty resources
+	Level.prototype.removeEmptyResources = function(){
+		for(var i = 0; i < this.resources.length; i++){
+			if(this.resources[i] != null && this.resources[i].getQuantity() <= 0){
+				this.resources[i] = null;
+			}
+		}
 	};
 	
 	//Draw the map
@@ -191,7 +214,8 @@ window.Level = (function() {
 	//Draw the levels resources
 	Level.prototype.drawLevelResources = function(ctx){
 		for(var i = 0; i < this.numResources; i++){
-			this.resources[i].display(ctx);
+			if(this.resources[i] != null)
+				this.resources[i].display(ctx);
 		}
 	};
 
@@ -218,7 +242,8 @@ window.Level = (function() {
 	//Update the level resources
 	Level.prototype.updateLevelResources = function(){
 		for(var i = 0; i < this.numResources; i++){
-			this.resources[i].autoDecreaseQuantity();
+			if(this.resources[i] != null)
+				this.resources[i].autoDecreaseQuantity();
 		}
 	};
 
@@ -237,19 +262,35 @@ window.Level = (function() {
 				this.clickedIcon = this.smallQuantityIcon;
 				this.resourceWindowOpen = false;
 				this.resourceToAdd.initQuantity = 50;
+				this.subtractResourcesFromPlayer(50);
 			}
 			else if(this.mediumQuantityIcon.isClicked(clickX, clickY) == true){	
 				this.resourcePlaceHolderActive = true;
 				this.clickedIcon = this.mediumQuantityIcon;
 				this.resourceWindowOpen = false;			
 				this.resourceToAdd.initQuantity = 100;	
+				this.subtractResourcesFromPlayer(100);
 			}
 			else if(this.largeQuantityIcon.isClicked(clickX, clickY) == true){			
 				this.resourcePlaceHolderActive = true;
 				this.clickedIcon = this.largeQuantityIcon;
 				this.resourceWindowOpen = false;
 				this.resourceToAdd.initQuantity = 250;
+				this.subtractResourcesFromPlayer(250);
 			}
+		}
+	};
+
+	//Subtract player resources
+	Level.prototype.subtractResourcesFromPlayer = function(amount){
+		if(this.resourceToAdd.name == "troops"){
+			this.player.decreaseTroopsQuantity(amount);
+		}else if(this.resourceToAdd.name == "medicine"){
+			this.player.decreaseMedicineQuantity(amount);
+		}else if(this.resourceToAdd.name == "money"){
+			this.player.decreaseMoneyQuantity(amount);
+		}else if(this.resourceToAdd.name == "food"){
+			this.player.decreaseFoodQuantity(amount);
 		}
 	};
 

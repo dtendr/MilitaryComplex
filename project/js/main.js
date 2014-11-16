@@ -94,28 +94,7 @@ function draw(){
 
 	//Main Screen
 	if(currentScreen == CurrentScreen.MAIN){
-		// Draw the map tiles
-		testLevel.drawMap(ctx);
-		
-		//Draw test resource
-		//testResource.display(ctx);
-		
-		//Draw test icon
-		//testIcon.display(ctx);
-
-		//Draw testEntity's resources
-		//testEntity.drawResources(ctx);
-		
-		//Draw testPlayer's resources
-		//testPlayer.drawResources(ctx);
-		
-		//Draw testEnemy's resources
-		//testEnemy.drawResources(ctx);
-		testLevel.drawLevelResources(ctx);
-		
-		testLevel.drawUI(ctx, SCREEN_WIDTH, SCREEN_HEIGHT);
-
-		testLevel.drawResourcePlaceholder(ctx, mousePos);
+		testLevel.draw(ctx, SCREEN_WIDTH, SCREEN_HEIGHT, mousePos);
 	}
 }
 
@@ -135,7 +114,7 @@ function update(){
 		//testEnemy.updateResourceQuantities();
 		if(gamePaused == false){
 			if(currentFrame%60 == 0)
-				testLevel.updateAllResources();
+				testLevel.update();
 		}
 	}
 }
@@ -167,8 +146,10 @@ function onCanvasClick(e){
 		//Resource allocating
 		if(testLevel.getResourcePlaceHolderStatus() == false)		
 			testLevel.handleIconClicks(clickPos[0], clickPos[1]);
-		else
+		else{
 			testLevel.handleResourcePlaceClick(mousePos);
+			gamePaused = false;
+		}
 	}
 }
 

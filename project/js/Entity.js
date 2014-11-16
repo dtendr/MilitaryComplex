@@ -34,6 +34,13 @@ window.Entity = (function() {
 	Entity.prototype.getMedicineQuantity = function(){ return this.medicine.quantity; };
 	Entity.prototype.getMoneyQuantity = function(){ return this.money.quantity; };
 	Entity.prototype.getFoodQuantity = function(){ return this.food.quantity; };
+
+	//Setters
+	Entity.prototype.decreaseTroopsQuantity = function(amount){ this.troops.quantity -= amount; };
+	Entity.prototype.decreaseMedicineQuantity = function(amount){ this.medicine.quantity -= amount; };
+	Entity.prototype.decreaseMoneyQuantity = function(amount){ this.money.quantity -= amount; };
+	Entity.prototype.decreaseFoodQuantity = function(amount){ this.food.quantity -= amount; };
+
 	
 	//Functions to move the resources
 	Entity.prototype.moveTroopsTo = function(x, y){ this.troops.setPos(x, y); }
