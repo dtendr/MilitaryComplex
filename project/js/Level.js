@@ -135,7 +135,7 @@ window.Level = (function() {
 		var startingRectY = 0;
 		for(var i = 0; i < this.numEnemies; i++){
 			ctx.fillRect(startingRectX, startingRectY, rectWidth, 200);		
-			ctx.strokeRect(startingRectX,  startingRectY, rectWidth, 200);
+			ctx.strokeRect(startingRectX, startingRectY, rectWidth, 200);
 			
 			new Icon(startingRectX + 5, startingRectY + 10, "media/troopsIcon.png").display(ctx);
 			new Icon(startingRectX + 5, startingRectY + 40, "media/medicineIcon.png").display(ctx);
@@ -224,7 +224,6 @@ window.Level = (function() {
 		this.drawLevelResources(ctx);
 		this.drawPlayerResources(ctx);
 		this.drawEnemyResources(ctx);
-
 	};
 
 	//Update player resources

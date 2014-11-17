@@ -40,19 +40,13 @@ function init(){
 	//Add event listeners for button clicks and key presses
 	canvasElement.addEventListener("click", onCanvasClick);
 	window.addEventListener("keypress", onKeyDown);
-	canvasElement.addEventListener('mousemove', function(evt) {
-	    mousePos = getMousePos(canvasElement, evt);
+	canvasElement.addEventListener("mousemove", function(e) {
+	    mousePos = getMousePos(canvasElement, e);
 	});
 
 	//Load resources
 	RESOURCE_LOADER = new Loader(SCREEN_WIDTH, SCREEN_HEIGHT);
-	
-	console.log("Resources: ", RESOURCE_LOADER.getAllResources());
-	console.log("Buttons: ", RESOURCE_LOADER.getAllButtons());
-	console.log("Icons: ", RESOURCE_LOADER.getAllIcons());
 
-	//testEntity = new Entity(playerData, testEntityImages);
-	
 	//Prototype inheritance for enemy
 	Player.prototype = new Entity(playerData, testEntityImages);
 	testPlayer = new Player();
@@ -101,20 +95,19 @@ function draw(){
 //This function will update whatever variables we need based on which screen we are on
 function update(){
 	currentFrame++;
-
+	
 	//Title screen updates
 	if(currentScreen == CurrentScreen.TITLE){
 			
 	}
 
 	//Main screen updates
-	if(currentScreen == CurrentScreen.MAIN){
-		//testEntity.updateResourceQuantities();
-		//testPlayer.updateResourceQuantities();
-		//testEnemy.updateResourceQuantities();
+	if(currentScreen == CurrentScreen.MAIN){		
 		if(gamePaused == false){
-			if(currentFrame%60 == 0)
+			if(currentFrame%60 == 0){			
 				testLevel.update();
+				currentFrame = 0;
+			}
 		}
 	}
 }
@@ -130,19 +123,12 @@ function onCanvasClick(e){
 	
 		//Start button
 		if(startButton.isClicked(clickPos[0], clickPos[1])){
-			console.log("Start Button clicked");
 			currentScreen = CurrentScreen.MAIN;
 		}	
 	}
 	
 	//Get click events for the game screen
 	if(currentScreen === CurrentScreen.MAIN){
-		//Test icon
-		if(testIcon.isClicked(clickPos[0], clickPos[1])){
-			console.log("Icon clicked");
-			currentScreen = CurrentScreen.TITLE;
-		}
-
 		//Resource allocating
 		if(testLevel.getResourcePlaceHolderStatus() == false)		
 			testLevel.handleIconClicks(clickPos[0], clickPos[1]);

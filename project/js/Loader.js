@@ -13,10 +13,7 @@ window.Loader = (function() {
 		testEntityImages2 = ["media/test2.png", "media/test2.png", "media/test2.png", "media/test2.png"];
 
 		//Load Resource objects
-		//myResource = new Resource("name", initQuantity, amountLostPerTurn, imagePath);
-		testResource = new Resource("Food", 100, 5, "media/test2.png");
-		testResource.setPos(50, 50);
-		testResource.setOnMap(true);		
+		//myResource = new Resource("name", initQuantity, amountLostPerTurn, imagePath);		
 			
 		//Load Button objects
 		//myButton = new Button(x, y, "Text inside button");	
