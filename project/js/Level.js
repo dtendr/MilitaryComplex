@@ -255,47 +255,141 @@ window.Level = (function() {
 
 	//Handle clicking on the resource window
 	Level.prototype.handleIconClicks = function(clickX, clickY){
-		if(this.resourceWindowOpen == true){
-			if(this.smallQuantityIcon.isClicked(clickX, clickY) == true){	
+		if(this.resourceWindowOpen){
+			if(this.smallQuantityIcon.isClicked(clickX, clickY)){	
 				this.resourcePlaceHolderActive = true;
 				this.clickedIcon = this.smallQuantityIcon;
 				this.resourceWindowOpen = false;
-				this.resourceToAdd.initQuantity = 50;
-				this.subtractResourcesFromPlayer(50);
+				this.checkResourceExpenses("small");
 			}
-			else if(this.mediumQuantityIcon.isClicked(clickX, clickY) == true){	
+			else if(this.mediumQuantityIcon.isClicked(clickX, clickY)){	
 				this.resourcePlaceHolderActive = true;
 				this.clickedIcon = this.mediumQuantityIcon;
-				this.resourceWindowOpen = false;			
-				this.resourceToAdd.initQuantity = 100;	
-				this.subtractResourcesFromPlayer(100);
+				this.resourceWindowOpen = false;	
+				this.checkResourceExpenses("medium");
 			}
-			else if(this.largeQuantityIcon.isClicked(clickX, clickY) == true){			
+			else if(this.largeQuantityIcon.isClicked(clickX, clickY)){			
 				this.resourcePlaceHolderActive = true;
 				this.clickedIcon = this.largeQuantityIcon;
 				this.resourceWindowOpen = false;
-				this.resourceToAdd.initQuantity = 250;
-				this.subtractResourcesFromPlayer(250);
+				this.checkResourceExpenses("large");
 			}
 		}
 	};
+	
+	//check resource expenses to account for spending past the '0' mark
+	//combines subtraction of player resources, for efficiency's sake
+	Level.prototype.checkResourceExpenses = function(type){
+		var adjustedAmt = 0;
+		var smallQuantity = 50, mediumQuantity = 100, largeQuantity = 250;
 
-	//Subtract player resources
-	Level.prototype.subtractResourcesFromPlayer = function(amount){
-		if(this.resourceToAdd.name == "troops"){
-			this.player.decreaseTroopsQuantity(amount);
-		}else if(this.resourceToAdd.name == "medicine"){
-			this.player.decreaseMedicineQuantity(amount);
-		}else if(this.resourceToAdd.name == "money"){
-			this.player.decreaseMoneyQuantity(amount);
-		}else if(this.resourceToAdd.name == "food"){
-			this.player.decreaseFoodQuantity(amount);
+		if(type == "small"){
+			if(this.resourceToAdd.name == "troops"){
+				if((this.player.troops.quantity - smallQuantity) > 0)
+					adjustedAmt = smallQuantity;
+				else
+					adjustedAmt = this.player.troops.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseTroopsQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "medicine"){
+				if((this.player.medicine.quantity - smallQuantity) > 0)
+					adjustedAmt = smallQuantity;
+				else
+					adjustedAmt = this.player.medicine.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMedicineQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "money"){
+				if((this.player.money.quantity - smallQuantity) > 0)
+					adjustedAmt = smallQuantity;
+				else
+					adjustedAmt = this.player.money.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMoneyQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "food"){
+				if((this.player.food.quantity - smallQuantity) > 0)
+					adjustedAmt = smallQuantity;
+				else
+					adjustedAmt = this.player.food.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseFoodQuantity(adjustedAmt);
+			}
 		}
-	};
+		else if(type == "medium"){
+			if(this.resourceToAdd.name == "troops"){
+				if((this.player.troops.quantity - mediumQuantity) > 0)
+					adjustedAmt = mediumQuantity;
+				else
+					adjustedAmt = this.player.troops.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseTroopsQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "medicine"){
+				if((this.player.medicine.quantity - mediumQuantity) > 0)
+					adjustedAmt = mediumQuantity;
+				else
+					adjustedAmt = this.player.medicine.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMedicineQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "money"){
+				if((this.player.money.quantity - mediumQuantity) > 0)
+					adjustedAmt = mediumQuantity;
+				else
+					adjustedAmt = this.player.money.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMoneyQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "food"){
+				if((this.player.food.quantity - mediumQuantity) > 0)
+					adjustedAmt = mediumQuantity;
+				else
+					adjustedAmt = this.player.food.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseFoodQuantity(adjustedAmt);
+			}
+		}
+		else if(type == "large"){
+			if(this.resourceToAdd.name == "troops"){
+				if((this.player.troops.quantity - largeQuantity) > 0)
+					adjustedAmt = largeQuantity;
+				else
+					adjustedAmt = this.player.troops.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseTroopsQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "medicine"){
+				if((this.player.medicine.quantity - largeQuantity) > 0)
+					adjustedAmt = largeQuantity;
+				else
+					adjustedAmt = this.player.medicine.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMedicineQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "money"){
+				if((this.player.money.quantity - largeQuantity) > 0)
+					adjustedAmt = largeQuantity;
+				else
+					adjustedAmt = this.player.money.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseMoneyQuantity(adjustedAmt);
+			}
+			else if(this.resourceToAdd.name == "food"){
+				if((this.player.food.quantity - largeQuantity) > 0)
+					adjustedAmt = largeQuantity;
+				else
+					adjustedAmt = this.player.food.quantity;
+				this.resourceToAdd.initQuantity = adjustedAmt;
+				this.player.decreaseFoodQuantity(adjustedAmt);
+			}
+		}
+	}
 
 	//Draw resource placeholder
 	Level.prototype.drawResourcePlaceholder = function(ctx, mousePos){
-		if(this.resourcePlaceHolderActive == true){
+		if(this.resourcePlaceHolderActive){
 			var img = new Image();
 			img.src = this.clickedIcon.getImagePath();
 			ctx.drawImage(img, mousePos.x, mousePos.y);
@@ -304,7 +398,7 @@ window.Level = (function() {
 
 	//Handle resource being placed on map
 	Level.prototype.handleResourcePlaceClick = function(mousePos){
-		if(this.resourcePlaceHolderActive == true){
+		if(this.resourcePlaceHolderActive){
 			//name, initQuantity, amountLostPerTurn, imagePath, x, y
 			this.resourceToAdd.x = mousePos.x;
 			this.resourceToAdd.y = mousePos.y;
