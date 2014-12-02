@@ -3,9 +3,11 @@ var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
 var CurrentScreen = {
 	TITLE: 0,
-	MAIN: 1,	
-	GAMEOVER: 2,
-	GAMEWIN: 3
+	INSTRUCTION: 1,
+	COUNTRY: 2,
+	MAIN: 3,	
+	GAMEOVER: 4,
+	GAMEWIN: 5
 }; 
 var currentScreen = 0;
 var canvasElement;
@@ -19,11 +21,15 @@ var gamePaused = false;
 var RESOURCE_LOADER;
 
 var startButton;
+var nextButton;
+var playButton;
 var testResource;
 var testIcon;
 var testEntityImages;
 var testEntityImages2;
 //var testEntity;
+
+var germanFlag = new Image();
 
 var testPlayer;
 var testEnemy;
@@ -86,6 +92,22 @@ function draw(){
 		drawText("Welcome to Military Complex", SCREEN_WIDTH/2 - 200, 150, "#FFFFFF", "30px");
 	}
 
+	//Instruction screen
+	if(currentScreen == CurrentScreen.INSTRUCTION){
+		for(var i = 0; i < levelIntro.length; i++){
+			drawText(levelIntro[i], 15, (i+5)*25, "#FFFFFF", "16px");
+		}
+		nextButton.display(ctx);
+	}
+
+	//Country screen
+	if(currentScreen === CurrentScreen.COUNTRY){
+		germanFlag.src = "media/germanFlag.jpg";
+		ctx.drawImage(germanFlag, 25, 25);
+		drawText("Germany", 25, 225, "#FFFFFF", "16px");
+		playButton.display(ctx);
+	}
+
 	//Main Screen
 	if(currentScreen == CurrentScreen.MAIN){
 		testLevel.draw(ctx, SCREEN_WIDTH, SCREEN_HEIGHT, mousePos);
@@ -123,10 +145,24 @@ function onCanvasClick(e){
 	
 		//Start button
 		if(startButton.isClicked(clickPos[0], clickPos[1])){
-			currentScreen = CurrentScreen.MAIN;
+			currentScreen = CurrentScreen.INSTRUCTION;
 		}	
 	}
 	
+	//Get click events for the instructions screen
+	if(currentScreen === CurrentScreen.INSTRUCTION){
+		if(nextButton.isClicked(clickPos[0], clickPos[1])){
+			currentScreen = CurrentScreen.COUNTRY;
+		}
+	}
+
+	//Get click events for country screen
+	if(currentScreen === CurrentScreen.COUNTRY){
+		if(playButton.isClicked(clickPos[0], clickPos[1]) && testLevel.getPlayerCountry() != ""){
+			currentScreen = CurrentScreen.MAIN;
+		}
+	}
+
 	//Get click events for the game screen
 	if(currentScreen === CurrentScreen.MAIN){
 		//Resource allocating

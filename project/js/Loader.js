@@ -5,7 +5,7 @@ window.Loader = (function() {
 		this.screenHeight = screenHeight;
 		this.resources = [];
 		this.buttons = [];
-		this.icons = [];
+		this.icons = [];		
 		
 		//Set up resource image paths
 		//					    Troops             Medicine             Money              Food
@@ -18,6 +18,8 @@ window.Loader = (function() {
 		//Load Button objects
 		//myButton = new Button(x, y, "Text inside button");	
 		startButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 100, "Start");
+		nextButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT - 100, "Next");
+		playButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT - 100, "Play");
 		
 		//Load Icon objects
 		//myIcon = new Icon(x, y, "imagePath");

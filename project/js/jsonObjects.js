@@ -54,3 +54,14 @@ var mapData = {
 		{"col" : [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3] }
 	]
 };
+
+var levelIntro = [
+	"It is September 1942, the winter is cold and harsh and German troops are in Russian territory.",
+	"The goal of the Germans was to take the city of Stalingrad on their way to controlling the oil fields in the",
+	"Caucausas. The Russians had weakened forces due to previous battles but still had to keep the city.",
+	"German troops advanced but could not take the entire city. Russian troops surrounded the city and trapped",
+	"Germany inside. German armies could not last the winter and they had less supplies than Russia.",
+	"1943, Germany had to surrender.\n\n You are in command of the resources of the German army as they try to",
+	"take the city of Stalingrad. In order to be victorious, you must eliminate all the Russian troops. ",
+	"Can you change the outcome of this historic battle or will you too fall to the same fate?"
+];

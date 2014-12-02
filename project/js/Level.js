@@ -5,6 +5,7 @@ window.Level = (function() {
 		Player.prototype = new Entity(playerData, testEntityImages);
 		
 		this.player = new Player();
+		this.playerCountry = "";
 		this.enemies = [];
 		this.numEnemies = numEnemies;
 		for(var i = 0; i < numEnemies; i++){
@@ -32,6 +33,10 @@ window.Level = (function() {
 			y: ""
 		};
 	}
+
+	//Get/set player country
+	Level.prototype.getPlayerCountry = function(){ return this.playerCountry; };
+	Level.prototype.setPlayerCountry = function(country){ this.playerCountry = country; };
 
 	//Main update function
 	Level.prototype.update = function(){
