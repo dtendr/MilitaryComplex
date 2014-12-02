@@ -66,7 +66,7 @@ window.Level = (function() {
 	//Draw the map
 	Level.prototype.drawMap = function(ctx){
 		// Tile
-		var tileSize = 20;
+		var tileSize = 25;
 		var tileX, tileY;
 		// Map object
 		var data = mapData.rows;
