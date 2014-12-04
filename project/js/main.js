@@ -9,7 +9,7 @@ var CurrentScreen = {
 	GAMEOVER: 4,
 	GAMEWIN: 5
 }; 
-var currentScreen = 3;
+var currentScreen = 0;
 var canvasElement;
 
 //Global variables
@@ -29,7 +29,7 @@ var testEntityImages;
 var testEntityImages2;
 //var testEntity;
 
-var germanFlag = new Image();
+var germanFlag = new Icon(25, 25, "media/germanFlag.jpg", SCREEN_WIDTH, SCREEN_HEIGHT);
 
 var testPlayer;
 var testEnemy;
@@ -102,8 +102,7 @@ function draw(){
 
 	//Country screen
 	if(currentScreen === CurrentScreen.COUNTRY){
-		germanFlag.src = "media/germanFlag.jpg";
-		ctx.drawImage(germanFlag, 25, 25);
+		germanFlag.display(ctx);		
 		drawText("Germany", 25, 225, "#FFFFFF", "16px");
 		playButton.display(ctx);
 	}
@@ -158,8 +157,20 @@ function onCanvasClick(e){
 
 	//Get click events for country screen
 	if(currentScreen === CurrentScreen.COUNTRY){
+		if(germanFlag.isClicked(clickPos[0], clickPos[1])){
+			germanFlag.toggleBorder();
+
+			if(germanFlag.getBorderOn() == true){
+				testLevel.setPlayerCountry("Germany");	
+				testLevel.setPlayerFlagPath("media/germanFlag.jpg");	
+			}else{
+				testLevel.setPlayerCountry("");	
+				testLevel.setPlayerFlagPath("");
+			}
+		}
+
 		if(playButton.isClicked(clickPos[0], clickPos[1]) && testLevel.getPlayerCountry() != ""){
-			currentScreen = CurrentScreen.MAIN;
+			currentScreen = CurrentScreen.MAIN;		
 		}
 	}
 

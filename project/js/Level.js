@@ -6,6 +6,7 @@ window.Level = (function() {
 		
 		this.player = new Player();
 		this.playerCountry = "";
+		this.playerFlagPath = "";
 		this.enemies = [];
 		this.numEnemies = numEnemies;
 		for(var i = 0; i < numEnemies; i++){
@@ -34,9 +35,11 @@ window.Level = (function() {
 		};
 	}
 
-	//Get/set player country
+	//Get/set player country and flag path
 	Level.prototype.getPlayerCountry = function(){ return this.playerCountry; };
 	Level.prototype.setPlayerCountry = function(country){ this.playerCountry = country; };
+	Level.prototype.getPlayerFlagPath = function(){ return this.playerFlagPath; }; 
+	Level.prototype.setPlayerFlagPath = function(path){ this.playerFlagPath = path; };
 
 	//Main update function
 	Level.prototype.update = function(){
