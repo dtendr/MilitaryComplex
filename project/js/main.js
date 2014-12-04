@@ -69,9 +69,16 @@ function init(){
 //Check for click
 //http://miloq.blogspot.com/2011/05/coordinates-mouse-click-canvas.html
 function getPosition(event, canvas){
-	var x = event.x;
-	var y = event.y;
-	
+	var x;
+	var y;
+	if (event.pageX || event.pageY) { 
+	  x = event.pageX;
+	  y = event.pageY;
+	}
+	else { 
+	  x = event.clientX + document.body.scrollLeft + document.documentElement.scrollLeft; 
+	  y = event.clientY + document.body.scrollTop + document.documentElement.scrollTop; 
+	} 
 	x -= canvas.offsetLeft;
 	y -= canvas.offsetTop;
 
