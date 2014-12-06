@@ -9,7 +9,7 @@ var CurrentScreen = {
 	GAMEOVER: 4,
 	GAMEWIN: 5
 }; 
-var currentScreen = 0;
+var currentScreen = 3;
 var canvasElement;
 
 //Global variables
