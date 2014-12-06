@@ -122,8 +122,8 @@ window.Level = (function() {
 		//Draw the player's ui
 		ctx.fillStyle = "rgb(0, 148, 10)";
 		ctx.strokeStyle = "black";
-		ctx.fillRect(0, 0, 80, 225);		
-		ctx.strokeRect(0, 0, 80, 225);
+		ctx.fillRect(0, 0, 80, 250);		
+		ctx.strokeRect(0, 0, 80, 250);
 		
 		//Draw player icons			
 		for(var i = 0; i < this.playerResourceIcons.length; i++)
@@ -140,6 +140,11 @@ window.Level = (function() {
 		drawText("2", 10, 95, "#000000", "17px");
 		drawText("3", 10, 145, "#000000", "17px");
 		drawText("4", 10, 195, "#000000", "17px");
+
+		//Draw flag
+		var playerFlag = new Image();
+		playerFlag.src = this.playerFlagPath;
+		ctx.drawImage(playerFlag, 5, 200);
 		
 		//Draw enemies icons
 		var rectWidth = 80;
@@ -159,6 +164,10 @@ window.Level = (function() {
 			drawText(this.enemies[i].getMoneyQuantity(), startingRectX + 35, startingRectY + 90, "#FFFFFF", "16px");
 			drawText(this.enemies[i].getFoodQuantity(), startingRectX + 35, startingRectY + 120, "#FFFFFF", "16px");
 			
+			var flag = new Image();
+			flag.src = "media/russianFlag.png";
+			ctx.drawImage(flag, screenWidth - 75, 150);
+
 			startingRectY += 225;
 		}
 
