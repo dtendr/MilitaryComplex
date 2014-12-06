@@ -62,7 +62,7 @@ function init(){
 	testEnemy = new Enemy();
 
 	//myLevel = new Level(playerData, numEnemies, enemyObjectArray, mapObject);
-	testLevel = new Level(playerData, 1, enemyObjectsArray, {});
+	testLevel = new Level(playerData, 1, enemyObjectsArray, {}, SCREEN_WIDTH, SCREEN_HEIGHT);
 	//testLevel.addResource("Food", 2000, 25, "media/test2.png", 400, 400);
 }
 
@@ -189,6 +189,28 @@ function onCanvasClick(e){
 		else{
 			testLevel.handleResourcePlaceClick(mousePos);
 			gamePaused = false;
+		}
+
+		//All four resource icon clicks
+		if(testLevel.playerResourceIcons[0].isClicked(clickPos[0], clickPos[1])){
+			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(1, "troops", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();	
+		}
+		if(testLevel.playerResourceIcons[1].isClicked(clickPos[0], clickPos[1])){
+			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(2, "medicine", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();	
+		}
+		if(testLevel.playerResourceIcons[2].isClicked(clickPos[0], clickPos[1])){
+			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(3, "money", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();	
+		}
+		if(testLevel.playerResourceIcons[3].isClicked(clickPos[0], clickPos[1])){
+			testLevel.toggleResourceWindow();
+			testLevel.loadResourceQuantities(4, "food", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();	
 		}
 	}
 }

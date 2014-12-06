@@ -1,12 +1,18 @@
 "use strict";
 window.Level = (function() {
 
-	function Level(playerData, numEnemies, enemyObjects, mapData){
+	function Level(playerData, numEnemies, enemyObjects, mapData, screenWidth, screenHeight){
 		Player.prototype = new Entity(playerData, testEntityImages);
 		
 		this.player = new Player();
 		this.playerCountry = "";
 		this.playerFlagPath = "";
+		this.playerResourceIcons = [];
+		this.playerResourceIcons[0] = new Icon(5, screenHeight - 45, "media/troopsIcon.png");
+		this.playerResourceIcons[1] = new Icon(75, screenHeight - 45, "media/medicineIcon.png");
+		this.playerResourceIcons[2] = new Icon(145, screenHeight - 45, "media/moneyIcon.png");
+		this.playerResourceIcons[3] = new Icon(215, screenHeight - 45, "media/foodIcon.png");	
+		this.playerTroopsIcon;
 		this.enemies = [];
 		this.numEnemies = numEnemies;
 		for(var i = 0; i < numEnemies; i++){
@@ -44,7 +50,7 @@ window.Level = (function() {
 	//Main update function
 	Level.prototype.update = function(){
 		this.removeEmptyResources();
-		this.updateAllResources();
+		this.updateLevelResources();
 	};
 
 	//Main draw function 
@@ -119,11 +125,9 @@ window.Level = (function() {
 		ctx.fillRect(0, screenHeight - 50, 300, 50);		
 		ctx.strokeRect(0, screenHeight - 50, 300, 50);
 		
-		//Draw player icons		
-		new Icon(5, screenHeight - 45, "media/troopsIcon.png").display(ctx);
-		new Icon(75, screenHeight - 45, "media/medicineIcon.png").display(ctx);
-		new Icon(145, screenHeight - 45, "media/moneyIcon.png").display(ctx);
-		new Icon(215, screenHeight - 45, "media/foodIcon.png").display(ctx);
+		//Draw player icons			
+		for(var i = 0; i < this.playerResourceIcons.length; i++)
+			this.playerResourceIcons[i].display(ctx);
 		
 		//Draw player resource info
 		drawText(this.player.getTroopsQuantity(), 35, screenHeight - 20, "#FFFFFF", "16px");

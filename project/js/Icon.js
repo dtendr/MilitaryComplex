@@ -36,12 +36,13 @@ window.Icon = (function() {
 	
 	//Test for click
 	Icon.prototype.isClicked = function(x, y){
-		if(x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height){
-			return true;
-		}
-		else{
-			return false;
-		}
+		if(this != null){
+			if(x > this.x && x < this.x + this.width && y > this.y && y < this.y + this.height){
+				return true;
+			}
+		}		
+			
+		return false;		
 	}
 
 	//Return image path
