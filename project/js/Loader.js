@@ -20,6 +20,7 @@ window.Loader = (function() {
 		startButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2 - 100, "Start");
 		nextButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT - 100, "Next");
 		playButton = new Button(SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT - 100, "Play");
+		pauseButton = new Button(30, SCREEN_HEIGHT - 50, "Pause");
 		
 		//Load Icon objects
 		//myIcon = new Icon(x, y, "imagePath");

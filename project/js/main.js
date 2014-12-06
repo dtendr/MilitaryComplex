@@ -23,6 +23,7 @@ var RESOURCE_LOADER;
 var startButton;
 var nextButton;
 var playButton;
+var pauseButton;
 var testResource;
 var testIcon;
 var testEntityImages;
@@ -118,6 +119,10 @@ function draw(){
 	//Main Screen
 	if(currentScreen == CurrentScreen.MAIN){
 		testLevel.draw(ctx, SCREEN_WIDTH, SCREEN_HEIGHT, mousePos);
+		pauseButton.display(ctx);
+
+		if(gamePaused && testLevel.resourceWindowOpen == false)
+			drawText("PAUSED", SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2, "#000000", "25px");
 	}
 }
 
@@ -212,6 +217,12 @@ function onCanvasClick(e){
 			testLevel.toggleResourceWindow();
 			testLevel.loadResourceQuantities(4, "food", SCREEN_WIDTH, SCREEN_HEIGHT);
 			toggleGamePaused();	
+		}
+
+		//Pause
+		if(pauseButton.isClicked(clickPos[0], clickPos[1])){
+			if(testLevel.resourceWindowOpen == false)
+				toggleGamePaused();
 		}
 	}
 }
