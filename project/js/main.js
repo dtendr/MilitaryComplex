@@ -28,7 +28,6 @@ var testResource;
 var testIcon;
 var testEntityImages;
 var testEntityImages2;
-//var testEntity;
 
 var germanFlag = new Icon(25, 75, "media/germanFlag.png", SCREEN_WIDTH, SCREEN_HEIGHT);
 
