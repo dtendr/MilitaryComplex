@@ -4,6 +4,9 @@
 "use strict";
 window.Entity = (function() {
 
+	var setType = "";
+	var setAmt = 0;
+
 	function Entity(dataObject, imagePathArray){
 		this.troops = new Resource("Troops", dataObject.troops.initQuantity, dataObject.troops.amountLostPerTurn, imagePathArray[0]);
 		this.medicine = new Resource("Medicine", dataObject.medicine.initQuantity, dataObject.medicine.amountLostPerTurn, imagePathArray[1]);
@@ -27,6 +30,11 @@ window.Entity = (function() {
 		this.medicine.autoDecreaseQuantity();
 		this.money.autoDecreaseQuantity();
 		this.food.autoDecreaseQuantity();
+	}
+	
+	Entity.prototype.informAI = function(setType, setAmt){
+		this.setType = setType;
+		this.setAmt = setAmt;
 	}
 	
 	//Getters

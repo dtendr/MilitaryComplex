@@ -2,9 +2,7 @@
 window.Level = (function() {
 
 	function Level(playerData, numEnemies, enemyObjects, mapData, screenWidth, screenHeight){
-		Player.prototype = new Entity(playerData, testEntityImages);
-		
-		this.player = new Player();
+		this.player = new Entity(playerData, testEntityImages);
 		this.playerCountry = "";
 		this.playerFlagPath = "";
 		this.playerResourceIcons = [];
@@ -16,8 +14,7 @@ window.Level = (function() {
 		this.enemies = [];
 		this.numEnemies = numEnemies;
 		for(var i = 0; i < numEnemies; i++){
-			Enemy.prototype = new Entity(enemyObjects[i], testEntityImages2);
-			this.enemies[i] = new Enemy();
+			this.enemies[i] = new Entity(enemyObjects[i], testEntityImages2);
 		}
 
 		this.resources = [];
@@ -498,7 +495,17 @@ window.Level = (function() {
 				this.resourceToAdd.imagePath, this.resourceToAdd.x, this.resourceToAdd.y);			
 
 			this.resourcePlaceHolderActive = false;
+			
+			this.handleEnemyResources();
 		};
+	};
+	
+	Level.prototype.handleEnemyResources = function(){
+		if(this.enemies[0].setType != ""){
+			this.addResource(this.enemies[0].setType, this.resourceToAdd.initQuantity, this.resourceToAdd.amountLostPerTurn, 
+					this.resourceToAdd.imagePath, this.resourceToAdd.x, this.resourceToAdd.y);
+		}
+				
 	};
 
 	//Return resource placeholder

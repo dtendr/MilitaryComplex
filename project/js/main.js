@@ -54,12 +54,10 @@ function init(){
 	RESOURCE_LOADER = new Loader(SCREEN_WIDTH, SCREEN_HEIGHT);
 
 	//Prototype inheritance for enemy
-	Player.prototype = new Entity(playerData, testEntityImages);
-	testPlayer = new Player();
+	testPlayer = new Entity(playerData, testEntityImages);
 	
 	//Prototype inheritance for enemy
-	Enemy.prototype = new Entity(playerData, testEntityImages);
-	testEnemy = new Enemy();
+	testEnemy = new Entity(playerData, testEntityImages);
 
 	//myLevel = new Level(playerData, numEnemies, enemyObjectArray, mapObject);
 	testLevel = new Level(playerData, 1, enemyObjectsArray, {}, SCREEN_WIDTH, SCREEN_HEIGHT);
