@@ -31,8 +31,8 @@ window.Enemy = (function() {
 		//money can be traded for other resources, whichever is most needed
 		
 		//if player places troops, place counter troops
-		/*if(setType == "troops"){
-		
+		if(setType == "troops"){
+			
 		}
 		else if(setType == "medicine"){
 		
@@ -43,7 +43,7 @@ window.Enemy = (function() {
 		else if(setType == "food"){
 		
 		}
-		
+		/*
 			if(player.resourceToAdd.name == "troops"){
 				if((this.player.troops.quantity - smallQuantity) > 0)
 					adjustedAmt = smallQuantity;

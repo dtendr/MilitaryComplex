@@ -311,7 +311,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseTroopsQuantity(adjustedAmt);
 				
-				this.enemy.informAI("troops", adjustedAmt);
+				this.enemies.informAI("troops", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "medicine"){
 				if((this.player.medicine.quantity - smallQuantity) > 0)
@@ -321,7 +321,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMedicineQuantity(adjustedAmt);
 				
-				this.enemy.informAI("medicine", adjustedAmt);
+				this.enemies.informAI("medicine", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "money"){
 				if((this.player.money.quantity - smallQuantity) > 0)
@@ -331,7 +331,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMoneyQuantity(adjustedAmt);
 				
-				this.enemy.informAI("money", adjustedAmt);
+				this.enemies.informAI("money", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "food"){
 				if((this.player.food.quantity - smallQuantity) > 0)
@@ -341,7 +341,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseFoodQuantity(adjustedAmt);
 				
-				this.enemy.informAI("food", adjustedAmt);
+				this.enemies.informAI("food", adjustedAmt);
 			}
 		}
 		else if(type == "medium"){
@@ -353,7 +353,8 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseTroopsQuantity(adjustedAmt);
 				
-				this.enemy.informAI("troops", adjustedAmt);
+				
+				this.enemies[0].informAI("troops", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "medicine"){
 				if((this.player.medicine.quantity - mediumQuantity) > 0)
@@ -363,7 +364,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMedicineQuantity(adjustedAmt);
 				
-				this.enemy.informAI("medicine", adjustedAmt);
+				this.enemies[0].informAI("medicine", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "money"){
 				if((this.player.money.quantity - mediumQuantity) > 0)
@@ -373,7 +374,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMoneyQuantity(adjustedAmt);
 				
-				this.enemy.informAI("money", adjustedAmt);
+				this.enemies[0].informAI("money", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "food"){
 				if((this.player.food.quantity - mediumQuantity) > 0)
@@ -383,7 +384,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseFoodQuantity(adjustedAmt);
 				
-				this.enemy.informAI("food", adjustedAmt);
+				this.enemies[0].informAI("food", adjustedAmt);
 			}
 		}
 		else if(type == "large"){
@@ -395,7 +396,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseTroopsQuantity(adjustedAmt);
 				
-				this.enemy.informAI("troops", adjustedAmt);
+				this.enemyies[0].informAI("troops", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "medicine"){
 				if((this.player.medicine.quantity - largeQuantity) > 0)
@@ -405,7 +406,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMedicineQuantity(adjustedAmt);
 				
-				this.enemy.informAI("medicine", adjustedAmt);
+				this.enemies[0].informAI("medicine", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "money"){
 				if((this.player.money.quantity - largeQuantity) > 0)
@@ -415,7 +416,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseMoneyQuantity(adjustedAmt);
 				
-				this.enemy.informAI("money", adjustedAmt);
+				this.enemies[0].informAI("money", adjustedAmt);
 			}
 			else if(this.resourceToAdd.name == "food"){
 				if((this.player.food.quantity - largeQuantity) > 0)
@@ -425,7 +426,7 @@ window.Level = (function() {
 				this.resourceToAdd.initQuantity = adjustedAmt;
 				this.player.decreaseFoodQuantity(adjustedAmt);
 				
-				this.enemy.informAI("food", adjustedAmt);
+				this.enemies[0].informAI("food", adjustedAmt);
 			}
 		}
 	}
