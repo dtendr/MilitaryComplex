@@ -418,7 +418,7 @@ window.Level = (function() {
 	//Handle resource being placed on map
 	Level.prototype.handleResourcePlaceClick = function(mousePos){
 		if(this.resourcePlaceHolderActive){
-			// Map boundary for placing the resournces 
+			// Map boundary for placing the resources 
 			if( mousePos.x < mapData.x ){
 				mousePos.x = mapData.x;
 			}else if( mousePos.x > ((mapData.width() + mapData.x) - mapData.tileSize) ){
@@ -430,8 +430,22 @@ window.Level = (function() {
 				mousePos.y = (mapData.height() + mapData.y) - mapData.tileSize;
 			}
 			//name, initQuantity, amountLostPerTurn, imagePath, x, y
-			this.resourceToAdd.x = mousePos.x;
-			this.resourceToAdd.y = mousePos.y;
+
+			//snap to tile			
+			if(mousePos.x % mapData.tileSize > 0){
+				this.resourceToAdd.x = mousePos.x - (mousePos.x % mapData.tileSize);
+			}
+			else{
+				this.resourceToAdd.x = mousePos.x;
+			}
+			
+			if(mousePos.y % mapData.tileSize > 0){
+			
+				this.resourceToAdd.y = mousePos.y - (mousePos.y % mapData.tileSize)
+			}
+			else{
+				this.resourceToAdd.y = mousePos.y;
+			}
 
 			console.log(this.resourceToAdd);
 			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, this.resourceToAdd.amountLostPerTurn, 
