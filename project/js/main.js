@@ -124,7 +124,7 @@ function draw(){
 		testLevel.draw(ctx, SCREEN_WIDTH, SCREEN_HEIGHT, mousePos);
 		pauseButton.display(ctx);
 
-		if(gamePaused && testLevel.resourceWindowOpen == false)
+		if(gamePaused && !testLevel.resourceWindowOpen)
 			drawText("PAUSED", SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2, "#000000", "25px");
 	}
 
@@ -158,7 +158,7 @@ function update(){
 
 	//Main screen updates
 	if(currentScreen == CurrentScreen.MAIN){		
-		if(gamePaused == false){
+		if(!gamePaused){
 			if(currentFrame%60 == 0){			
 				testLevel.update();
 				currentFrame = 0;
@@ -194,7 +194,7 @@ function onCanvasClick(e){
 		if(germanFlag.isClicked(clickPos[0], clickPos[1])){
 			germanFlag.toggleBorder();
 
-			if(germanFlag.getBorderOn() == true){
+			if(germanFlag.getBorderOn()){
 				testLevel.setPlayerCountry("Germany");	
 				testLevel.setPlayerFlagPath("media/germanFlag.png");	
 			}else{
@@ -211,7 +211,7 @@ function onCanvasClick(e){
 	//Get click events for the game screen
 	if(currentScreen === CurrentScreen.MAIN){
 		//Resource allocating
-		if(testLevel.getResourcePlaceHolderStatus() == false)		
+		if(!testLevel.getResourcePlaceHolderStatus())		
 			testLevel.handleIconClicks(clickPos[0], clickPos[1]);
 		else{
 			testLevel.handleResourcePlaceClick(mousePos);
@@ -242,7 +242,7 @@ function onCanvasClick(e){
 
 		//Pause
 		if(pauseButton.isClicked(clickPos[0], clickPos[1])){
-			if(testLevel.resourceWindowOpen == false)
+			if(!testLevel.resourceWindowOpen)
 				toggleGamePaused();
 		}
 	}
@@ -272,6 +272,12 @@ function onKeyDown(e){
 		else if(keyCode == 52){ //4 - food
 			testLevel.toggleResourceWindow();
 			testLevel.loadResourceQuantities(4, "food", SCREEN_WIDTH, SCREEN_HEIGHT);
+			toggleGamePaused();
+		}
+	}
+	else if(currentScreen === CurrentScreen.MAIN){
+		if(keyCode == 80){ //P - pause
+			//keyboard support for pausing
 			toggleGamePaused();
 		}
 	}
