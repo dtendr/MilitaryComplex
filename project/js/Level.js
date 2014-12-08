@@ -446,9 +446,31 @@ window.Level = (function() {
 			else{
 				this.resourceToAdd.y = mousePos.y;
 			}
+			
+			// Find the tile's index from the mapData array
+			var colIndex = Math.floor((mousePos.x - mapData.x) / mapData.tileSize);
+			var rowIndex = Math.floor((mousePos.y - mapData.y) / mapData.tileSize);
+			var type = mapData.rows[rowIndex].col[colIndex];
+			console.log("tile: " + type);
+			// Based on the tile type change the lost amount 
+			var amountLostPerTurn;
+			switch(type){
+				case 0: // snow
+					amountLostPerTurn = 20;
+					break;
+				case 1: // road
+					amountLostPerTurn = 5;
+					break;
+				case 2: // rocks
+					amountLostPerTurn = 15;
+					break;
+				case 3: // dirt
+					amountLostPerTurn = 10;
+					break;
+			}
 
 			console.log(this.resourceToAdd);
-			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, this.resourceToAdd.amountLostPerTurn, 
+			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, amountLostPerTurn, 
 				this.resourceToAdd.imagePath, this.resourceToAdd.x, this.resourceToAdd.y);			
 
 			this.resourcePlaceHolderActive = false;
