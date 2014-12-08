@@ -11,7 +11,7 @@ window.Button = (function() {
 		this.height = 40;
 		this.halfW = 50;
 		this.halfH = 20;
-		this.strokeColor = "red";
+		this.strokeColor = "#00CC00";
 		this.fillColor = "black";
 		this.text = text;
 	}

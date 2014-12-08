@@ -102,8 +102,11 @@ function draw(){
 
 	//Instruction screen
 	if(currentScreen == CurrentScreen.INSTRUCTION){
+		drawText("The Battle of Stalingrad", 250, 50, "#00CC00", "24px");
 		for(var i = 0; i < levelIntro.length; i++){
-			drawText(levelIntro[i], 15, (i+5)*25, "#FFFFFF", "16px");
+			var color = "#fff";
+			if (i == levelIntro.length-1 ) color = "#00CC00";	
+			drawText(levelIntro[i], 50, (i+5)*20, color, "16px");
 		}
 		nextButton.display(ctx);
 	}
@@ -127,16 +130,16 @@ function draw(){
 
 	// Game Over screen
 	if( currentScreen === CurrentScreen.GAMEOVER){
-		drawText("Game Over", 315, 150, "#FFf", "42px");
+		drawText("Game Over", 315, 150, "#fff", "42px");
 		drawText("Germany has lost this battle, Russia earns the victory", 175, 200, "#fff", "20px");
 		var flag = new Image();
 		flag.src = "media/russianFlag.png";
 		ctx.drawImage(flag, 200, 250, 400, 200);
 	}
 
-	// Game Over screen
+	// Game Win screen
 	if( currentScreen === CurrentScreen.GAMEWIN){
-		drawText("You Win", 315, 150, "#FFf", "42px");
+		drawText("You Win", 315, 150, "#00CC00", "42px");
 		drawText("With you help, Germany earns the victory", 220, 200, "#fff", "20px");
 		var flag = new Image();
 		flag.src = "media/germanFlag.png";
