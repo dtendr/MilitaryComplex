@@ -433,15 +433,14 @@ window.Level = (function() {
 
 			//snap to tile			
 			if(mousePos.x % mapData.tileSize > 0){
-				this.resourceToAdd.x = mousePos.x - (mousePos.x % mapData.tileSize);
+				this.resourceToAdd.x = mousePos.x - ((mousePos.x - mapData.x) % mapData.tileSize);
 			}
 			else{
 				this.resourceToAdd.x = mousePos.x;
 			}
 			
 			if(mousePos.y % mapData.tileSize > 0){
-			
-				this.resourceToAdd.y = mousePos.y - (mousePos.y % mapData.tileSize);
+				this.resourceToAdd.y = (mousePos.y - (mousePos.y % mapData.tileSize)) + (mapData.tileSize/2-mapData.y);
 			}
 			else{
 				this.resourceToAdd.y = mousePos.y;
