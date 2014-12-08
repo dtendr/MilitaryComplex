@@ -108,7 +108,7 @@ window.Level = (function() {
 				}
 				ctx.drawImage(terrain, tileX, tileY, mapData.tileSize, mapData.tileSize);
 				//ctx.strokeStyle = "#B0B0B0";
-				//ctx.strokeRect(tileX, tileY, tileSize, tileSize);
+				//ctx.strokeRect(tileX, tileY, mapData.tileSize, mapData.tileSize);
 			}
 		}
 	};
@@ -453,24 +453,24 @@ window.Level = (function() {
 			var type = mapData.rows[rowIndex].col[colIndex];
 			console.log("tile: " + type);
 			// Based on the tile type change the lost amount 
-			var amountLostPerTurn;
+			var lost;
 			switch(type){
 				case 0: // snow
-					amountLostPerTurn = 20;
-					break;
-				case 1: // road
-					amountLostPerTurn = 5;
+					lost = 20;
 					break;
 				case 2: // rocks
-					amountLostPerTurn = 15;
+					lost = 15;
 					break;
 				case 3: // dirt
-					amountLostPerTurn = 10;
+					lost = 10;
 					break;
+				default:
+					lost = 5;
 			}
+			this.resourceToAdd.amountLostPerTurn = lost;
 
 			console.log(this.resourceToAdd);
-			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, amountLostPerTurn, 
+			this.addResource(this.resourceToAdd.name, this.resourceToAdd.initQuantity, this.resourceToAdd.amountLostPerTurn, 
 				this.resourceToAdd.imagePath, this.resourceToAdd.x, this.resourceToAdd.y);			
 
 			this.resourcePlaceHolderActive = false;
