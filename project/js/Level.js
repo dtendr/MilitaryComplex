@@ -79,18 +79,16 @@ window.Level = (function() {
 	
 	//Draw the map
 	Level.prototype.drawMap = function(ctx){
-		// Tile
-		var tileSize = 25;
 		var tileX, tileY;
 		// Map object
 		var data = mapData.rows;
-		
+
 		for(var r = 0; r < data.length; r++){
 			for( var c = 0; c < data[r].col.length; c++){
 				var col = data[r].col[c];
 				// Position of the next tile
-				tileY = r * tileSize + 7;
-				tileX = c * tileSize + 87;
+				tileY = r * mapData.tileSize + mapData.y;
+				tileX = c * mapData.tileSize + mapData.x;
 				// New image for the terrains
 				var terrain = new Image();
 				
@@ -108,7 +106,7 @@ window.Level = (function() {
 						terrain.src = "media/terrain3.png";
 						break;
 				}
-				ctx.drawImage(terrain, tileX, tileY, tileSize, tileSize);
+				ctx.drawImage(terrain, tileX, tileY, mapData.tileSize, mapData.tileSize);
 				//ctx.strokeStyle = "#B0B0B0";
 				//ctx.strokeRect(tileX, tileY, tileSize, tileSize);
 			}
@@ -420,6 +418,17 @@ window.Level = (function() {
 	//Handle resource being placed on map
 	Level.prototype.handleResourcePlaceClick = function(mousePos){
 		if(this.resourcePlaceHolderActive){
+			// Map boundary for placing the resournces 
+			if( mousePos.x < mapData.x ){
+				mousePos.x = mapData.x;
+			}else if( mousePos.x > ((mapData.width() + mapData.x) - mapData.tileSize) ){
+				mousePos.x = (mapData.width()+ mapData.x) - mapData.tileSize;
+			}
+			if( mousePos.y < mapData.y ){
+				mousePos.y = mapData.y;
+			}else if( mousePos.y > ((mapData.height() + mapData.y)- mapData.tileSize) ){
+				mousePos.y = (mapData.height() + mapData.y) - mapData.tileSize;
+			}
 			//name, initQuantity, amountLostPerTurn, imagePath, x, y
 			this.resourceToAdd.x = mousePos.x;
 			this.resourceToAdd.y = mousePos.y;
