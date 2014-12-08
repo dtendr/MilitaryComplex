@@ -89,7 +89,7 @@ window.Level = (function() {
 			for( var c = 0; c < data[r].col.length; c++){
 				var col = data[r].col[c];
 				// Position of the next tile
-				tileY = r * tileSize;
+				tileY = r * tileSize + 7;
 				tileX = c * tileSize + 87;
 				// New image for the terrains
 				var terrain = new Image();
