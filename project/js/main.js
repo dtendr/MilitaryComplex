@@ -124,6 +124,24 @@ function draw(){
 		if(gamePaused && testLevel.resourceWindowOpen == false)
 			drawText("PAUSED", SCREEN_WIDTH/2 - 20, SCREEN_HEIGHT/2, "#000000", "25px");
 	}
+
+	// Game Over screen
+	if( currentScreen === CurrentScreen.GAMEOVER){
+		drawText("Game Over", 315, 150, "#FFf", "42px");
+		drawText("Germany has lost this battle, Russia earns the victory", 175, 200, "#fff", "20px");
+		var flag = new Image();
+		flag.src = "media/russianFlag.png";
+		ctx.drawImage(flag, 200, 250, 400, 200);
+	}
+
+	// Game Over screen
+	if( currentScreen === CurrentScreen.GAMEWIN){
+		drawText("You Win", 315, 150, "#FFf", "42px");
+		drawText("With you help, Germany earns the victory", 220, 200, "#fff", "20px");
+		var flag = new Image();
+		flag.src = "media/germanFlag.png";
+		ctx.drawImage(flag, 200, 250, 400, 200);
+	}
 }
 
 //This function will update whatever variables we need based on which screen we are on
@@ -263,7 +281,7 @@ function toggleGamePaused() { gamePaused = !gamePaused; }
 function runGameLoop(){
 
 	//Clear the screen
-	ctx.fillStyle = "black";
+	ctx.fillStyle = "#333";
 	ctx.fillRect(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 	
 	//Code goes here
