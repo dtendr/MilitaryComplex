@@ -441,7 +441,7 @@ window.Level = (function() {
 			
 			if(mousePos.y % mapData.tileSize > 0){
 			
-				this.resourceToAdd.y = mousePos.y - (mousePos.y % mapData.tileSize)
+				this.resourceToAdd.y = mousePos.y - (mousePos.y % mapData.tileSize);
 			}
 			else{
 				this.resourceToAdd.y = mousePos.y;
