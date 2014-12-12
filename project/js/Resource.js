@@ -57,8 +57,8 @@ window.Resource = (function() {
 	//Draw the resource
 	Resource.prototype.display = function(ctx){
 		if(this.onMap == true){			
-			ctx.drawImage(this.imageObj, this.x+4, this.y+11, this.width/(1.5), this.height/(1.5));			
-			drawText(this.quantity, this.x+4, this.y+11, "#000", "12px", "bold");			
+			ctx.drawImage(this.imageObj, this.x+4, this.y+8, this.width/(1.5), this.height/(1.5));			
+			drawText(this.quantity, this.x+4, this.y+10, "#000", "11px", "bold");			
         }
 	}
 

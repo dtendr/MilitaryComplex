@@ -451,26 +451,18 @@ window.Level = (function() {
 			}else if( mousePos.y > ((mapData.height() + mapData.y)- mapData.tileSize) ){
 				mousePos.y = (mapData.height() + mapData.y) - mapData.tileSize;
 			}
-			//name, initQuantity, amountLostPerTurn, imagePath, x, y
-
-			//snap to tile			
-			if(mousePos.x % mapData.tileSize > 0){
-				this.resourceToAdd.x = mousePos.x - ((mousePos.x - mapData.x) % mapData.tileSize);
-			}
-			else{
-				this.resourceToAdd.x = mousePos.x;
-			}
-			
-			if(mousePos.y % mapData.tileSize > 0){
-				this.resourceToAdd.y = (mousePos.y - (mousePos.y % mapData.tileSize)) + (mapData.tileSize/2-mapData.y);
-			}
-			else{
-				this.resourceToAdd.y = mousePos.y;
-			}
-			
+	
 			// Find the tile's index from the mapData array
 			var colIndex = Math.floor((mousePos.x - mapData.x) / mapData.tileSize);
 			var rowIndex = Math.floor((mousePos.y - mapData.y) / mapData.tileSize);
+
+			//snap to tile	
+			mousePos.x = mapData.x + (colIndex*mapData.tileSize);
+			mousePos.y = mapData.y + (rowIndex*mapData.tileSize);
+			
+			this.resourceToAdd.x = mousePos.x;
+			this.resourceToAdd.y = mousePos.y;
+
 			var type = mapData.rows[rowIndex].col[colIndex];
 			console.log("tile: " + type);
 			// Based on the tile type change the lost amount 
