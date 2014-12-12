@@ -1,3 +1,4 @@
+
 //CONSTANTS
 var SCREEN_WIDTH = 800;
 var SCREEN_HEIGHT = 600;
@@ -311,10 +312,14 @@ $(document).ready(function(){
 });
 
 //This function lets us draw text all in one line
-function drawText(text, x, y, color, font){
+function drawText(text, x, y, color, font, style){
 	ctx.save();
 	ctx.fillStyle = color;
-	ctx.font= font + " Arial";
+	if(style){
+		ctx.font= style + " " + font + " Arial";
+	}else{
+		ctx.font= font + " Arial";
+	}
 	ctx.fillText(text, x, y);
 	ctx.restore();
 }
